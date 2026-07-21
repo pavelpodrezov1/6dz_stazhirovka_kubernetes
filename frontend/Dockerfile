@@ -1,7 +1,10 @@
 FROM nginx:1.28-alpine
 
-COPY index.html /usr/share/nginx/html/index.html
-COPY app.js /usr/share/nginx/html/app.js
-COPY styles.css /usr/share/nginx/html/styles.css
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY index.html app.js styles.css config.js /usr/share/nginx/html/
 
-EXPOSE 80
+RUN chown -R 101:101 /usr/share/nginx/html /etc/nginx/nginx.conf
+
+USER 101:101
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
