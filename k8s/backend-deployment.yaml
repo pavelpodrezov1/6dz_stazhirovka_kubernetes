@@ -26,6 +26,7 @@ spec:
         app.kubernetes.io/name: backend
 
     spec:
+      serviceAccountName: backend-sa
       automountServiceAccountToken: false
 
       securityContext:
@@ -104,3 +105,4 @@ spec:
             capabilities:
               drop:
                 - ALL
+
