@@ -1,0 +1,11 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: homework
+data:
+  config.js: |
+    window.APP_CONFIG = {
+      title: "Домашнее задание Kubernetes",
+      frontendVersion: "v1"
+    };
