@@ -1,3 +1,4 @@
+﻿
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,33 +9,98 @@ metadata:
 spec:
   replicas: 3
   revisionHistoryLimit: 5
+
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 0
       maxSurge: 1
+
   selector:
     matchLabels:
       app.kubernetes.io/name: backend
+
   template:
     metadata:
       labels:
         app.kubernetes.io/name: backend
+
     spec:
+      automountServiceAccountToken: false
+
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: backend
+
       containers:
         - name: backend
+          image: ghcr.io/pavelpodrezov1/k8s-homework-backend:v1
           imagePullPolicy: IfNotPresent
+
           ports:
             - name: http
               containerPort: 8080
+
           envFrom:
+            - configMapRef:
+                name: backend-config
+
           env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 3
+            failureThreshold: 30
+
           readinessProbe:
-            initialDelaySeconds: 3
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+
           livenessProbe:
-            initialDelaySeconds: 10
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+
           resources:
             requests:
+              cpu: 50m
+              memory: 96Mi
             limits:
-          securityContext:
+              cpu: 300m
+              memory: 256Mi
 
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
