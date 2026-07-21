@@ -1,0 +1,26 @@
+NAMESPACE       NAME                                        READY   STATUS    RESTARTS        AGE     IP               NODE    NOMINATED NODE   READINESS GATES
+homework        backend-7f9994666-dkw92                     1/1     Running   0               22m     10.244.2.83      kube2   <none>           <none>
+homework        backend-7f9994666-h8rgv                     1/1     Running   0               22m     10.244.9.146     kube3   <none>           <none>
+homework        backend-7f9994666-t7r5b                     1/1     Running   0               23m     10.244.2.82      kube2   <none>           <none>
+homework        frontend-c954f4d68-7jrbd                    1/1     Running   0               22m     10.244.2.85      kube2   <none>           <none>
+homework        frontend-c954f4d68-w7cqf                    1/1     Running   0               22m     10.244.2.84      kube2   <none>           <none>
+homework        postgres-0                                  1/1     Running   0               5h48m   10.244.9.132     kube3   <none>           <none>
+ingress-nginx   ingress-nginx-controller-5c775b4947-2dm5l   1/1     Running   0               131m    10.244.9.135     kube3   <none>           <none>
+ingress-nginx   ingress-nginx-controller-5c775b4947-qrbvs   1/1     Running   0               27m     10.244.9.143     kube3   <none>           <none>
+kube-system     calico-kube-controllers-7bfdc5b57c-fsr5p    1/1     Running   0               12h     10.244.18.1      kube1   <none>           <none>
+kube-system     calico-node-btjzs                           1/1     Running   0               11h     192.168.56.103   kube3   <none>           <none>
+kube-system     calico-node-vs65k                           1/1     Running   0               12h     192.168.56.101   kube1   <none>           <none>
+kube-system     calico-node-vzdds                           1/1     Running   0               11h     192.168.56.102   kube2   <none>           <none>
+kube-system     coredns-674b8bbfcf-bxdtl                    1/1     Running   0               12h     10.244.18.3      kube1   <none>           <none>
+kube-system     coredns-674b8bbfcf-zsr9t                    1/1     Running   0               12h     10.244.18.2      kube1   <none>           <none>
+kube-system     csi-nfs-controller-574bcc9847-wmmzc         5/5     Running   0               27m     192.168.56.103   kube3   <none>           <none>
+kube-system     csi-nfs-node-dfqzs                          3/3     Running   1 (6h19m ago)   6h20m   192.168.56.102   kube2   <none>           <none>
+kube-system     csi-nfs-node-wvlj9                          3/3     Running   0               6h20m   192.168.56.101   kube1   <none>           <none>
+kube-system     csi-nfs-node-x62j4                          3/3     Running   0               6h20m   192.168.56.103   kube3   <none>           <none>
+kube-system     etcd-kube1                                  1/1     Running   0               12h     192.168.56.101   kube1   <none>           <none>
+kube-system     kube-apiserver-kube1                        1/1     Running   0               12h     192.168.56.101   kube1   <none>           <none>
+kube-system     kube-controller-manager-kube1               1/1     Running   1 (38m ago)     12h     192.168.56.101   kube1   <none>           <none>
+kube-system     kube-proxy-5kspl                            1/1     Running   0               11h     192.168.56.103   kube3   <none>           <none>
+kube-system     kube-proxy-fjdn6                            1/1     Running   0               12h     192.168.56.101   kube1   <none>           <none>
+kube-system     kube-proxy-rddqx                            1/1     Running   0               11h     192.168.56.102   kube2   <none>           <none>
+kube-system     kube-scheduler-kube1                        1/1     Running   0               12h     192.168.56.101   kube1   <none>           <none>

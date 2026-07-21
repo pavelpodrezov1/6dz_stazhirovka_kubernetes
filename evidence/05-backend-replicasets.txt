@@ -1,0 +1,6 @@
+NAME                 DESIRED   CURRENT   READY   AGE    CONTAINERS   IMAGES                                           SELECTOR
+backend-5bdb6df98b   0         0         0       105m   backend      ghcr.io/pavelpodrezov1/k8s-homework-backend:v1   app.kubernetes.io/name=backend,pod-template-hash=5bdb6df98b
+backend-7bd6dfdf54   0         0         0       3h2m   backend      ghcr.io/pavelpodrezov1/k8s-homework-backend:v1   app.kubernetes.io/name=backend,pod-template-hash=7bd6dfdf54
+backend-7f9994666    3         3         3       24m    backend      ghcr.io/pavelpodrezov1/k8s-homework-backend:v1   app.kubernetes.io/name=backend,pod-template-hash=7f9994666
+backend-849b99ff75   0         0         0       63m    backend      ghcr.io/pavelpodrezov1/k8s-homework-backend:v2   app.kubernetes.io/name=backend,pod-template-hash=849b99ff75
+backend-87f9f846b    0         0         0       41m    backend      ghcr.io/pavelpodrezov1/k8s-homework-backend:v1   app.kubernetes.io/name=backend,pod-template-hash=87f9f846b

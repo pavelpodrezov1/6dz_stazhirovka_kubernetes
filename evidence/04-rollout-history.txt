@@ -1,0 +1,8 @@
+deployment.apps/backend 
+REVISION  CHANGE-CAUSE
+1         <none>
+3         откат backend v2 -> v1
+5         обновление backend v1 -> v2
+6         обновление backend v1 -> v2
+7         обновление backend v1 -> v2
+

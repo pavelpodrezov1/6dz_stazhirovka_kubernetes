@@ -1,0 +1,38 @@
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS   IMAGES                                            SELECTOR
+deployment.apps/backend    3/3     3            3           3h1m   backend      ghcr.io/pavelpodrezov1/k8s-homework-backend:v1    app.kubernetes.io/name=backend
+deployment.apps/frontend   2/2     2            2           150m   frontend     ghcr.io/pavelpodrezov1/k8s-homework-frontend:v1   app.kubernetes.io/name=frontend
+
+NAME                        READY   AGE    CONTAINERS   IMAGES
+statefulset.apps/postgres   1/1     6h7m   postgres     postgres:15.13-bookworm
+
+NAME                           READY   STATUS    RESTARTS   AGE     IP             NODE    NOMINATED NODE   READINESS GATES
+pod/backend-7f9994666-dkw92    1/1     Running   0          22m     10.244.2.83    kube2   <none>           <none>
+pod/backend-7f9994666-h8rgv    1/1     Running   0          22m     10.244.9.146   kube3   <none>           <none>
+pod/backend-7f9994666-t7r5b    1/1     Running   0          22m     10.244.2.82    kube2   <none>           <none>
+pod/frontend-c954f4d68-7jrbd   1/1     Running   0          22m     10.244.2.85    kube2   <none>           <none>
+pod/frontend-c954f4d68-w7cqf   1/1     Running   0          22m     10.244.2.84    kube2   <none>           <none>
+pod/postgres-0                 1/1     Running   0          5h48m   10.244.9.132   kube3   <none>           <none>
+
+NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE    SELECTOR
+service/backend    ClusterIP   10.109.222.83    <none>        8080/TCP   3h1m   app.kubernetes.io/name=backend
+service/frontend   ClusterIP   10.111.245.249   <none>        8080/TCP   145m   app.kubernetes.io/name=frontend
+service/postgres   ClusterIP   None             <none>        5432/TCP   6h8m   app.kubernetes.io/name=postgres
+
+NAME                                         CLASS   HOSTS            ADDRESS         PORTS   AGE
+ingress.networking.k8s.io/homework-ingress   nginx   kube-lab.local   10.103.13.145   80      128m
+
+NAME                                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE    VOLUMEMODE
+persistentvolumeclaim/postgres-data-postgres-0   Bound    pvc-70d8a7bf-acfa-4acd-be60-21927675ee0a   5Gi        RWO            nfs-csi        <unset>                 6h7m   Filesystem
+
+NAME                                      MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/backend-pdb    2               N/A               1                     8m7s
+poddisruptionbudget.policy/frontend-pdb   1               N/A               1                     8m7s
+
+NAME                                                          POD-SELECTOR                      AGE
+networkpolicy.networking.k8s.io/allow-backend-from-frontend   app.kubernetes.io/name=backend    88m
+networkpolicy.networking.k8s.io/allow-backend-to-postgres     app.kubernetes.io/name=backend    88m
+networkpolicy.networking.k8s.io/allow-dns                     <none>                            88m
+networkpolicy.networking.k8s.io/allow-frontend-to-backend     app.kubernetes.io/name=frontend   88m
+networkpolicy.networking.k8s.io/allow-ingress-to-frontend     app.kubernetes.io/name=frontend   88m
+networkpolicy.networking.k8s.io/allow-postgres-from-backend   app.kubernetes.io/name=postgres   88m
+networkpolicy.networking.k8s.io/default-deny-all              <none>                            88m

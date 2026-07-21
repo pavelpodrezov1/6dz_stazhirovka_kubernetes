@@ -1,0 +1,6 @@
+backend читает ConfigMap:
+yes
+backend читает Secret:
+no
+backend удаляет Pod:
+no
